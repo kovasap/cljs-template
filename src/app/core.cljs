@@ -3,6 +3,7 @@
    [reagent.core :as r]
    [reagent.dom :as d]
    [reagent.dom.server :as s]
+   [malli.core :as m]
    [malli.dev.cljs]
    [malli.dev.pretty :as pretty]))
 
@@ -33,7 +34,7 @@
 
 (list-to-hiccup data)
 
-(def click-count (r/atom 0))
+(def click-count (r/atom 0 :validator #(m/validate [:int] %)))
 
 (defn counting-component []
   [:div
